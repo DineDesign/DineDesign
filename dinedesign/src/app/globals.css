@@ -2,14 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  
-}
+:root {}
 
 @media (prefers-color-scheme: dark) {
-  :root {
-   
-  }
+  :root {}
 }
 
 body {
@@ -20,4 +16,10 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.satisfy-regular {
+  font-family: "Satisfy", cursive;
+  font-weight: 400;
+  font-style: normal;
 }
