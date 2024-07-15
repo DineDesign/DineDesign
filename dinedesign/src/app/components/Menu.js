@@ -53,7 +53,7 @@ export default function Menu() {
                     ))}
                 </Box>
 
-                <Grid container spacing={3} sx={{ display: 'flex', justifyContent: 'center' }}>
+                <Grid container spacing={3} sx={{ display: 'flex', justifyContent: 'center', padding: '2rem' }}>
                     {menuItems[activeCategory].map((item, index) => (
                         <Grid item xs={12} sm={6} md={3} key={index}>
                             <Card>
