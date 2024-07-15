@@ -18,6 +18,18 @@ module.exports = {
     },
     extend: {
       colors: {
+        brown: {
+          50: '#f5f5f5',
+          100: '#e0e0e0',
+          200: '#b2b2b2',
+          300: '#808080',
+          400: '#4d4d4d',
+          500: '#2d1312', // Your custom brown color
+          600: '#262626',
+          700: '#1a1a1a',
+          800: '#121212',
+          900: '#0d0d0d',
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
