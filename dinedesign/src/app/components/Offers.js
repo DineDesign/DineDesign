@@ -1,4 +1,7 @@
+'use client'
 import { Container, Typography, ImageList, ImageListItem, ImageListItemBar } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const itemData = [
     {
@@ -14,6 +17,9 @@ const itemData = [
 ];
 
 export default function Offers() {
+    const theme = useTheme();
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+
     return (
         <Container maxWidth="md" className='p-9'>
             <Typography variant="h2" align="center" gutterBottom>
@@ -23,14 +29,20 @@ export default function Offers() {
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id felis et ipsum bibendum ultrices.
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             </Typography>
-            <ImageList sx={{ display: 'flex', flexGrow: 1 }}>
+            <ImageList cols={isSmallScreen ? 1 : 2} gap={16}>
                 {itemData.map((item) => (
-                    <ImageListItem key={item.img} sx={{ width: 600, height: 450 }}>
+                    <ImageListItem key={item.img} sx={{
+                        width: '100%',
+                        height: 'auto',
+                        maxWidth: 600,
+                        margin: '0 auto',
+                    }}>
                         <img
-                            srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                            src={`${item.img}?w=248&fit=crop&auto=format`}
+                            src={`${item.img}?w=600&h=450&fit=crop&auto=format`}
+                            srcSet={`${item.img}?w=600&h=450&fit=crop&auto=format&dpr=2 2x`}
                             alt={item.title}
                             loading="lazy"
+                            style={{ width: '100%', height: 'auto' }}
                         />
                         <ImageListItemBar
                             title={item.title}
