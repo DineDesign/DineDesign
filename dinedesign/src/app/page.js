@@ -5,6 +5,7 @@ import Title from "./components/Title";
 import Menu from "./components/Menu";
 import Offers from "./components/Offers";
 import Review from "./components/Review";
+import Contact from "./components/Contact"
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
       <Offers />
       <Menu />
       <Review />
+      <Contact/>
       {/* <InfiniteScroll/> */}
 
     </>
