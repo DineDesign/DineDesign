@@ -1,6 +1,8 @@
 'use client';
 import React, { useState } from 'react';
 import { Container, Typography, Grid, Card, CardMedia, CardContent, Button, Box } from '@mui/material';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 
 const menuItems = {
     Appetizers: [
@@ -29,6 +31,8 @@ const menuItems = {
 
 export default function Menu() {
     const [activeCategory, setActiveCategory] = useState('Pizza');
+    const theme = useTheme();
+    const isXsScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
     return (
         <Container maxWidth="md" className='p-9'>
@@ -40,15 +44,34 @@ export default function Menu() {
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id felis et ipsum bibendum ultrices.
             </Typography>
             <div className='flex flex-col gap-12'>
-                <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, mb: 4 }}>
+                <Box
+                    sx={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        flexWrap: 'wrap',
+                        gap: 1,
+                        mb: 4,
+                        overflowX: isXsScreen ? 'auto' : 'visible',
+                        '&::-webkit-scrollbar': { display: 'none' },
+                        scrollbarWidth: 'none',
+                    }}
+                >
                     {Object.keys(menuItems).map((category) => (
                         <Button
                             key={category}
                             variant={activeCategory === category ? "contained" : "outlined"}
                             color="primary"
                             onClick={() => setActiveCategory(category)}
+                            size="small"
+                            sx={{
+                                minWidth: 'auto',
+                                px: 1,
+                                whiteSpace: 'nowrap',
+                            }}
                         >
-                            {category}
+                            <Typography variant="button" noWrap>
+                                {category}
+                            </Typography>
                         </Button>
                     ))}
                 </Box>

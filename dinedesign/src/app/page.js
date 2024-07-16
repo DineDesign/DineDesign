@@ -13,8 +13,8 @@ export default function Home() {
       <Title />
       <Offers />
       <Menu />
+      <Review />
       <Contact/>
-
       {/* <InfiniteScroll/> */}
 
     </>
