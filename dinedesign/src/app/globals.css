@@ -70,10 +70,13 @@
 }
 
 .background-image {
-  background-image: url('./public/title-card-bg.png');
-  background-size: cover;
-  /* Ensure the image covers the entire area */
-  background-position: center;
-  /* Center the image */
+  background: 
+    linear-gradient(
+      rgba(0, 0, 0, 0.1), /* Adjusted the opacity of the black tint */
+      rgba(0, 0, 0, 0.5)
+    ),
+    url('./public/Background.jpg');
+  background-size: cover; /* Ensure the image covers the entire area */
+  background-position: center; /* Center the image */
   background-repeat: no-repeat;
 }
