@@ -17,6 +17,13 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        customFont: ['"Custom Font"', "sans-serif"],
+        cursive: ["Dancing Script", "cursive"],
+        title: ["Raleway","sans-serif"]
+        // Add more custom font families as needed
+      },
+      
       colors: {
         brown: {
           50: '#f5f5f5',
