@@ -1,0 +1,21 @@
+{
+    "Appetizers": [
+        { "name": "Bruschetta", "price": 8, "image": "https://cdn.loveandlemons.com/wp-content/uploads/2024/04/margarita-recipe.jpg" },
+        { "name": "Calamari", "price": 10, "image": "/path-to-calamari.jpg" },
+        { "name": "Calamari", "price": 10, "image": "/path-to-calamari.jpg" },
+        { "name": "Calamari", "price": 10, "image": "/path-to-calamari.jpg" }
+    ],
+    "Pizza": [
+        { "name": "Margherita", "price": 10, "image": "/path-to-margherita.jpg" },
+        { "name": "Pepperoni", "price": 12, "image": "/path-to-pepperoni.jpg" }
+    ],
+    "Desserts": [
+        { "name": "Tiramisu", "price": 7, "image": "/path-to-tiramisu.jpg" },
+        { "name": "Cannoli", "price": 6, "image": "/path-to-cannoli.jpg" },
+        { "name": "Tiramisu", "price": 7, "image": "/path-to-tiramisu.jpg" }
+    ],
+    "Bar": [
+        { "name": "Red Wine", "price": 8, "image": "/path-to-red-wine.jpg" },
+        { "name": "Cocktail", "price": 10, "image": "/path-to-cocktail.jpg" }
+    ]
+}
