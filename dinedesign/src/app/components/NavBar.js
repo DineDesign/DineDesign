@@ -19,7 +19,7 @@ export default function StickyNavbar() {
 
   const navList = (
     <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
-      {["Pages", "Account", "Blocks", "Docs"].map((item) => (
+      {["Offers","Menu", "Story", "Contact"].map((item) => (
         <li key={item} className="p-1 font-normal text-sm text-blue-gray-500">
           <a href="#" className="flex items-center">
             {item}
@@ -33,16 +33,17 @@ export default function StickyNavbar() {
     <nav className="sticky top-0 z-10 h-max w-full rounded-none px-4 py-2 lg:px-8 lg:py-4 bg-white shadow">
       <div className="flex items-center justify-between text-blue-gray-900">
         <a href="#" className="mr-4 cursor-pointer py-1.5 font-medium">
-          Material Tailwind
+          Dine Design
         </a>
         <div className="flex items-center gap-4">
           <div className="mr-4 hidden lg:block">{navList}</div>
           <div className="flex items-center gap-x-1">
-            <button className="hidden lg:inline-block px-4 py-2 text-sm font-medium text-blue-gray-500">
-              Log In
+          <button className="hidden lg:inline-block px-4 py-2 text-sm font-medium text-white bg-emerald-800 rounded-lg">
+              <span class="button" data-glf-cuid="94badddd-5f1d-46f5-900e-fe497c12f5ff" data-glf-ruid="c07978a7-6d4a-48d4-8b9b-a15ff281c075" >See MENU & Order</span>
             </button>
-            <button className="hidden lg:inline-block px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded-lg">
-              Sign in
+            <button className="hidden lg:inline-block px-4 py-2 text-sm font-medium text-white bg-yellow-600 rounded-lg">
+              <span class="button" data-glf-cuid="94badddd-5f1d-46f5-900e-fe497c12f5ff" data-glf-ruid="c07978a7-6d4a-48d4-8b9b-a15ff281c075" data-glf-reservation="true" >Table Reservation</span>
+
             </button>
           </div>
           <button
@@ -87,8 +88,7 @@ export default function StickyNavbar() {
           {navList}
           <div className="flex flex-col gap-2 mt-4">
             <button className="w-full px-4 py-2 text-sm font-medium text-blue-gray-500 bg-transparent border border-blue-gray-200 rounded-lg">
-              Log In
-            </button>
+            <span class="glf-button" data-glf-cuid="94badddd-5f1d-46f5-900e-fe497c12f5ff" data-glf-ruid="c07978a7-6d4a-48d4-8b9b-a15ff281c075" >See MENU & Order</span>            </button>
             <button className="w-full px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded-lg">
               Sign in
             </button>

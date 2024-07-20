@@ -118,6 +118,7 @@ export default function Offers() {
                             </Button>
                         </div>
                 </div>
+            
             </Carousel>
         {/* </Container> */}
         </div>
