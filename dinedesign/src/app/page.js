@@ -12,9 +12,9 @@ export default function Home() {
     <>
       <Title />
       <Offers />
-      <Menu />
-      <Review />
-      <Contact/>
+      {/* <Menu /> */}
+      {/* <Review /> */}
+      {/* <Contact /> */}
       {/* <InfiniteScroll/> */}
 
     </>

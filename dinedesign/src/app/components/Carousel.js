@@ -30,9 +30,8 @@ const Carousel = ({ children }) => {
     <div className="relative w-full h-full overflow-hidden">
       {React.Children.map(children, (child, index) => (
         <div
-          className={`absolute top-0 left-0 w-full h-full transition-opacity duration-500 ease-in-out ${
-            index === currentIndex ? 'opacity-100' : 'opacity-0'
-          }`}
+          className={`absolute top-0 left-0 w-full h-full transition-opacity duration-500 ease-in-out ${index === currentIndex ? 'opacity-100' : 'opacity-0'
+            }`}
         >
           {child}
         </div>

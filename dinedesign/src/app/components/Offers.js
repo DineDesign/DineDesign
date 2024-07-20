@@ -1,5 +1,5 @@
 'use client'
-import { Container, Typography, ImageList, ImageListItem, ImageListItemBar,Button } from '@mui/material';
+import { Container, Typography, ImageList, ImageListItem, ImageListItemBar, Button } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Carousel from './Carousel';
@@ -44,53 +44,20 @@ export default function Offers() {
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
     return (
-        <div className="w-full h-screen"> 
-        {/* <Container maxWidth="md" className='p-9 '> */}
+        <div className="w-full h-screen">
             <Carousel>
-                <div>
-                <Typography variant="h2" align="center" gutterBottom>
-                    Our Special Offers
-                </Typography>
-                <Typography variant="body1" align="center" paragraph>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id felis et ipsum bibendum ultrices.
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                </Typography>
-                <ImageList cols={isSmallScreen ? 1 : 2} gap={16}>
-                    {itemData.map((item) => (
-                        <ImageListItem key={item.img} sx={{
-                            width: '100%',
-                            height: 'auto',
-                            maxWidth: 600,
-                            margin: '0 auto',
-                        }}>
-                            <img
-                                src={`${item.img}?w=600&h=450&fit=crop&auto=format`}
-                                srcSet={`${item.img}?w=600&h=450&fit=crop&auto=format&dpr=2 2x`}
-                                alt={item.title}
-                                loading="lazy"
-                                style={{ width: '100%', height: 'auto' }}
-                            />
-                            <ImageListItemBar
-                                title={item.title}
-                                subtitle={<span>by: {item.author}</span>}
-                                position="below"
-                            />
-                        </ImageListItem>
-                    ))}
-                    </ImageList>
-                </div>
-                <div>
-                <Typography variant="h2" align="center" gutterBottom>
-                    Popular Dishes
-                </Typography>
-                <Typography variant="body1" align="center" paragraph>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id felis et ipsum bibendum ultrices.
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                </Typography>
-                    <ImageList cols={isSmallScreen ? 1 : 2} gap={16}>
-                        {itemData2.map((item) => (
+                <div className='p-5'>
+                    <Typography variant="h2" align="center" gutterBottom>
+                        Our Special Offers
+                    </Typography>
+                    <Typography variant="body1" align="center" paragraph>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id felis et ipsum bibendum ultrices.
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    </Typography>
+                    <ImageList cols={isSmallScreen ? 1 : 2} sx={{ padding: '10px' }}>
+                        {itemData.map((item) => (
                             <ImageListItem key={item.img} sx={{
-                                width: '50%',
+                                width: '100%',
                                 height: 'auto',
                                 maxWidth: 600,
                                 margin: '0 auto',
@@ -109,17 +76,41 @@ export default function Offers() {
                                 />
                             </ImageListItem>
                         ))}
-                        </ImageList>
-                        <div className= "flex  justify-center mb-10" >
-
-        
-                            <Button variant="contained" color="primary" onClick={() => handleSelect('right')}>
-                                    Explore more
-                            </Button>
-                        </div>
+                    </ImageList>
+                </div>
+                <div className='p-5'>
+                    <Typography variant="h2" align="center" gutterBottom>
+                        Popular Dishes
+                    </Typography>
+                    <Typography variant="body1" align="center" paragraph>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id felis et ipsum bibendum ultrices.
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    </Typography>
+                    <ImageList cols={isSmallScreen ? 1 : 2} gap={16} sx={{ padding: '10px' }}>
+                        {itemData2.map((item) => (
+                            <ImageListItem key={item.img} sx={{
+                                width: '100%',
+                                height: 'auto',
+                                maxWidth: 600,
+                                margin: '0 auto',
+                            }}>
+                                <img
+                                    src={`${item.img}?w=600&h=450&fit=crop&auto=format`}
+                                    srcSet={`${item.img}?w=600&h=450&fit=crop&auto=format&dpr=2 2x`}
+                                    alt={item.title}
+                                    loading="lazy"
+                                    style={{ width: '100%', height: 'auto' }}
+                                />
+                                <ImageListItemBar
+                                    title={item.title}
+                                    subtitle={<span>by: {item.author}</span>}
+                                    position="below"
+                                />
+                            </ImageListItem>
+                        ))}
+                    </ImageList>
                 </div>
             </Carousel>
-        {/* </Container> */}
-        </div>
+        </div >
     )
 }
