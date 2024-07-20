@@ -110,6 +110,7 @@ export default function Offers() {
                         ))}
                     </ImageList>
                 </div>
+            
             </Carousel>
         </div >
     )

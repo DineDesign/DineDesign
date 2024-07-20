@@ -72,10 +72,10 @@
 .background-image {
   background: 
     linear-gradient(
-      rgba(0, 0, 0, 0.1), /* Adjusted the opacity of the black tint */
-      rgba(0, 0, 0, 0.5)
+      rgba(0, 0, 0, 0.9), /* Adjusted the opacity of the black tint */
+      rgba(0, 0, 0, 0.4)
     ),
-    url('./public/Background.jpg');
+    url('./public/DineDesignBackground.png');
   background-size: cover; /* Ensure the image covers the entire area */
   background-position: center; /* Center the image */
   background-repeat: no-repeat;
