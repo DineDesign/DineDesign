@@ -1,117 +1,99 @@
 'use client'
-import { Container, Typography, ImageList, ImageListItem, ImageListItemBar, Button } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import Carousel from './Carousel';
+import React from 'react';
+import { Container, Typography, Card, CardContent, CardMedia, useMediaQuery, useTheme } from '@mui/material';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 const itemData = [
     {
-        img: 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e',
-        title: 'Breakfast',
-        author: '$9.99',
+        header: 'Our Special Offers',
+        description: 'Check out our amazing special offers!',
+        img1: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d',
+        img2: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4',
+        title1: 'Special Offer 1',
+        title2: 'Special Offer 2',
+        author1: 'Author 1',
+        author2: 'Author 2',
     },
     {
-        img: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d',
-        title: 'Burger',
-        author: '$12.99',
+        header: 'Popular Dishes',
+        description: 'Discover our most popular dishes.',
+        img1: 'https://images.unsplash.com/photo-1546069901-eacef0df6022',
+        img2: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836',
+        title1: 'Dish 1',
+        title2: 'Dish 2',
+        author1: 'Author 1',
+        author2: 'Author 2',
     },
+    // Add more items as needed
 ];
 
-const itemData2 = [
-    {
-        img: 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e',
-        title: 'Breakfast',
-        author: '$9.99',
-    },
-    {
-        img: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d',
-        title: 'Burger',
-        author: '$12.99',
-    },
-    {
-        img: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d',
-        title: 'Burger',
-        author: '$12.99',
-    },
-    {
-        img: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d',
-        title: 'Burger',
-        author: '$12.99',
-    },
-];
+
 
 export default function Offers() {
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        arrows: true,
+    };
+
     const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
     return (
-        <div className="w-full h-screen">
-            <Carousel>
-                <div className='p-5'>
-                    <Typography variant="h2" align="center" gutterBottom>
-                        Our Special Offers
-                    </Typography>
-                    <Typography variant="body1" align="center" paragraph>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id felis et ipsum bibendum ultrices.
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </Typography>
-                    <ImageList cols={isSmallScreen ? 1 : 2} sx={{ padding: '10px' }}>
-                        {itemData.map((item) => (
-                            <ImageListItem key={item.img} sx={{
-                                width: '100%',
-                                height: 'auto',
-                                maxWidth: 600,
-                                margin: '0 auto',
-                            }}>
-                                <img
-                                    src={`${item.img}?w=600&h=450&fit=crop&auto=format`}
-                                    srcSet={`${item.img}?w=600&h=450&fit=crop&auto=format&dpr=2 2x`}
-                                    alt={item.title}
-                                    loading="lazy"
-                                    style={{ width: '100%', height: 'auto' }}
+        <Container className='p-5 w-full'>
+            <Slider {...settings}>
+                {itemData.map((item, index) => (
+                    <div key={index}>
+                        <Typography variant="h2" align="center" gutterBottom>
+                            {item.header}
+                        </Typography>
+                        <Typography variant="body1" align="center" paragraph>
+                            {item.description}
+                        </Typography>
+                        <div className={isSmallScreen ? 'flex flex-col items-center p-5' : 'flex justify-center p-5'}>
+                            <Card sx={{ maxWidth: 300, m: 2 }} >
+                                <CardMedia
+                                    component="img"
+                                    sx={{ width: '100%', height: 200 }}
+                                    image={item.img1}
+                                    alt={item.header + ' - Dish 1'}
                                 />
-                                <ImageListItemBar
-                                    title={item.title}
-                                    subtitle={<span>by: {item.author}</span>}
-                                    position="below"
+                                <CardContent>
+                                    <Typography gutterBottom variant="h5" component="div">
+                                        Dish 1
+                                    </Typography>
+                                    <Typography variant="body2" color="text.secondary">
+                                        Description of Dish 1
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                            <Card sx={{ maxWidth: 300, m: 2 }} >
+                                <CardMedia
+                                    component="img"
+                                    sx={{ width: '100%', height: 200 }}
+                                    image={item.img2}
+                                    alt={item.header + ' - Dish 2'}
                                 />
-                            </ImageListItem>
-                        ))}
-                    </ImageList>
-                </div>
-                <div className='p-5'>
-                    <Typography variant="h2" align="center" gutterBottom>
-                        Popular Dishes
-                    </Typography>
-                    <Typography variant="body1" align="center" paragraph>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id felis et ipsum bibendum ultrices.
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </Typography>
-                    <ImageList cols={isSmallScreen ? 1 : 2} gap={16} sx={{ padding: '10px' }}>
-                        {itemData2.map((item) => (
-                            <ImageListItem key={item.img} sx={{
-                                width: '100%',
-                                height: 'auto',
-                                maxWidth: 600,
-                                margin: '0 auto',
-                            }}>
-                                <img
-                                    src={`${item.img}?w=600&h=450&fit=crop&auto=format`}
-                                    srcSet={`${item.img}?w=600&h=450&fit=crop&auto=format&dpr=2 2x`}
-                                    alt={item.title}
-                                    loading="lazy"
-                                    style={{ width: '100%', height: 'auto' }}
-                                />
-                                <ImageListItemBar
-                                    title={item.title}
-                                    subtitle={<span>by: {item.author}</span>}
-                                    position="below"
-                                />
-                            </ImageListItem>
-                        ))}
-                    </ImageList>
-                </div>
-            
-            </Carousel>
-        </div >
-    )
+                                <CardContent>
+                                    <Typography gutterBottom variant="h5" component="div">
+                                        Dish 2
+                                    </Typography>
+                                    <Typography variant="body2" color="text.secondary">
+                                        Description of Dish 2
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                        </div>
+                    </div>
+                ))}
+            </Slider>
+        </Container>
+    );
 }
