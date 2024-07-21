@@ -1,4 +1,9 @@
+
+
+
 /** @type {import('tailwindcss').Config} */
+
+
 module.exports = {
   darkMode: ["class"],
   content: [
@@ -19,7 +24,7 @@ module.exports = {
     extend: {
       fontFamily: {
         customFont: ['"Custom Font"', "sans-serif"],
-        cursive: ["Dancing Script", "cursive"],
+        cursive: ["Cedarville Cursive", "cursive"],
         title: ["Raleway","sans-serif"]
         // Add more custom font families as needed
       },

@@ -18,7 +18,6 @@ export default function Home() {
       <Reservation />
       <Contact />
       <Footer />
-      {/* <InfiniteScroll/> */}
 
     </>
   );
