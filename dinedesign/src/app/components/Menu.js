@@ -7,7 +7,7 @@ import menuData from '../Menu/menu.json';
 import Link from 'next/link';
 
 export default function Menu() {
-  const [activeCategory, setActiveCategory] = useState('Pizza');
+  const [activeCategory, setActiveCategory] = useState('Appetizers'); //issue here
   const theme = useTheme();
   const isXsScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
