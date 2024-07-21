@@ -10,7 +10,7 @@ const reviews = [
 
 export default function Review() {
     return (
-        <Container maxWidth="md" className='p-5'>
+        <Container maxWidth="md" className='p-5' id = "reviews">
             <Typography variant="h3" gutterBottom sx={{ mb: 4, fontWeight: 'bold', display: 'flex', justifyContent: 'center' }}>
                 Customer Reviews
             </Typography>

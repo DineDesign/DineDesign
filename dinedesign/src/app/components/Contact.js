@@ -1,6 +1,6 @@
 export default function Contact() {
     return (
-        <div className="bg-rose-50 pt-20">
+        <div className="bg-rose-50 pt-20" id = "contact">
             <ul className="flex flex-col md:flex-row justify-between items-center gap-y-8 px-6 md:px-16 lg:px-24 pt-4">
                 <li className="flex items-center">
                     <img src="https://www.svgrepo.com/show/532540/location-pin-alt-1.svg" width="40" height="40" alt="location" />
