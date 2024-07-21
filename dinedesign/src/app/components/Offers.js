@@ -47,53 +47,87 @@ export default function Offers() {
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
     return (
-        <Container className='p-5 w-full'>
-            <Slider {...settings}>
-                {itemData.map((item, index) => (
-                    <div key={index}>
-                        <Typography variant="h2" align="center" gutterBottom>
-                            {item.header}
-                        </Typography>
-                        <Typography variant="body1" align="center" paragraph>
-                            {item.description}
-                        </Typography>
-                        <div className={isSmallScreen ? 'flex flex-col items-center p-5' : 'flex justify-center p-5'}>
-                            <Card sx={{ maxWidth: 300, m: 2 }} >
-                                <CardMedia
-                                    component="img"
-                                    sx={{ width: '100%', height: 200 }}
-                                    image={item.img1}
-                                    alt={item.header + ' - Dish 1'}
-                                />
-                                <CardContent>
-                                    <Typography gutterBottom variant="h5" component="div">
-                                        Dish 1
-                                    </Typography>
-                                    <Typography variant="body2" color="text.secondary">
-                                        Description of Dish 1
-                                    </Typography>
-                                </CardContent>
-                            </Card>
-                            <Card sx={{ maxWidth: 300, m: 2 }} >
-                                <CardMedia
-                                    component="img"
-                                    sx={{ width: '100%', height: 200 }}
-                                    image={item.img2}
-                                    alt={item.header + ' - Dish 2'}
-                                />
-                                <CardContent>
-                                    <Typography gutterBottom variant="h5" component="div">
-                                        Dish 2
-                                    </Typography>
-                                    <Typography variant="body2" color="text.secondary">
-                                        Description of Dish 2
-                                    </Typography>
-                                </CardContent>
-                            </Card>
+        <Container className='p-5 w-full' maxWidth={false}>
+            <div className="custom-slider-container">
+                <Slider {...settings}>
+                    {itemData.map((item, index) => (
+                        <div key={index} className="slider-item">
+                            <Typography variant="h2" align="center" gutterBottom>
+                                {item.header}
+                            </Typography>
+                            <Typography variant="body1" align="center" paragraph>
+                                {item.description}
+                            </Typography>
+                            <div className={isSmallScreen ? 'flex flex-col items-center' : 'flex justify-center'}>
+                                <Card sx={{ maxWidth: 300, m: 2 }} >
+                                    <CardMedia
+                                        component="img"
+                                        sx={{ width: '100%', height: 200 }}
+                                        image={item.img1}
+                                        alt={item.header + ' - Dish 1'}
+                                    />
+                                    <CardContent>
+                                        <Typography gutterBottom variant="h5" component="div">
+                                            Dish 1
+                                        </Typography>
+                                        <Typography variant="body2" color="text.secondary">
+                                            Description of Dish 1
+                                        </Typography>
+                                    </CardContent>
+                                </Card>
+                                <Card sx={{ maxWidth: 300, m: 2 }} >
+                                    <CardMedia
+                                        component="img"
+                                        sx={{ width: '100%', height: 200 }}
+                                        image={item.img2}
+                                        alt={item.header + ' - Dish 2'}
+                                    />
+                                    <CardContent>
+                                        <Typography gutterBottom variant="h5" component="div">
+                                            Dish 2
+                                        </Typography>
+                                        <Typography variant="body2" color="text.secondary">
+                                            Description of Dish 2
+                                        </Typography>
+                                    </CardContent>
+                                </Card>
+                            </div>
                         </div>
-                    </div>
-                ))}
-            </Slider>
+                    ))}
+                </Slider>
+            </div>
+            <style jsx global>{`
+                .custom-slider-container {
+                    width: 100%;
+                    overflow: hidden;
+                    padding-bottom: 40px; /* Add space for dots */
+                }
+                .slick-slider {
+                    width: 100%;
+                }
+                .slick-list {
+                    margin: 0 -10px;
+                }
+                .slick-slide > div {
+                    padding: 0 10px;
+                }
+                .slider-item {
+                    outline: none;
+                }
+                /* Ensure dots are visible */
+                .slick-dots {
+                    bottom: -30px;
+                    z-index: 1;
+                }
+                .slick-dots li button:before {
+                    font-size: 12px;
+                    color: #000;
+                    opacity: 0.25;
+                }
+                .slick-dots li.slick-active button:before {
+                    opacity: 0.75;
+                }
+            `}</style>
         </Container>
     );
 }

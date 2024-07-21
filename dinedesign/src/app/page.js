@@ -5,6 +5,7 @@ import Menu from "./components/Menu";
 import Offers from "./components/Offers";
 import Review from "./components/Review";
 import Contact from "./components/Contact"
+import Reservation from './components/Reservation';
 import { staticGenerationAsyncStorage } from "next/dist/client/components/static-generation-async-storage-instance";
 
 export default function Home() {
@@ -14,7 +15,9 @@ export default function Home() {
       <Offers />
       <Menu />
       <Review />
+      <Reservation />
       <Contact />
+      <Footer />
       {/* <InfiniteScroll/> */}
 
     </>
