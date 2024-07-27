@@ -3,6 +3,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 import Footer from "./components/Footer"
 import Navbar from "./components/NavBar";
+import { UserProvider } from '@auth0/nextjs-auth0/client';
 
 export const metadata = {
   title: "Dine Design",
@@ -14,13 +15,15 @@ export default function RootLayout({ children }) {
     <>
 
       <html lang="en">
-        <body className={inter.className}>
-          <Navbar />
+        <UserProvider>
+          <body className={inter.className}>
+            <Navbar />
 
-          {children}
-          {/* <Footer/> */}
-        </body>
-      </html>
+            {children}
+            {/* <Footer/> */}
+          </body>
+        </UserProvider>
+      </html >
     </>
   );
 }

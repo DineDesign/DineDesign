@@ -56,18 +56,19 @@ export default function Menu() {
           {menuData[activeCategory].map((item, index) => (
             <Grid item xs={12} sm={6} md={3} key={index}>
               <Card>
-             
-              <Link href={`/menus/${encodeURIComponent(item.name)}`}>
-                <CardActionArea>
-                  <CardMedia component="img" height="140" image={item.image} alt={item.name} />
-                  <CardContent>
-                    <Typography variant="h6">{item.name}</Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      ${item.price}
-                    </Typography>
-                  </CardContent>
 
-                </CardActionArea>
+                <Link href={`/menus/${encodeURIComponent(item.name)}`}>
+                  <CardActionArea
+                    sx={{ width: '100%', maxWidth: 200, margin: 'auto' }}>
+                    <CardMedia component="img" image={item.image} alt={item.name} sx={{ width: 200, height: 200 }} />
+                    <CardContent>
+                      <Typography variant="h6">{item.name}</Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        ${item.price}
+                      </Typography>
+                    </CardContent>
+
+                  </CardActionArea>
                 </Link>
 
               </Card>
