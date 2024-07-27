@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 const API_KEY = process.env.GOOGLE_PLACE_API_KEY;
 
 export async function GET() {
-    const PLACE_ID = 'ChIJ2z4Y3nfM1IkRtMwLDbajEPU';
+    const PLACE_ID = process.env.PLACE_ID;
     const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${PLACE_ID}&fields=reviews&key=${API_KEY}`;
 
     try {
