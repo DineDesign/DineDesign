@@ -1,33 +1,26 @@
 import { NextResponse } from 'next/server';
-import axios from 'axios';
 
-export async function GET(request) {
-    const { searchParams } = new URL(request.url);
-    const placeId = searchParams.get('placeId');
+const API_KEY = process.env.GOOGLE_PLACE_API_KEY;
 
-    if (!placeId) {
-        return NextResponse.json({ error: 'Place ID is required' }, { status: 400 });
-    }
-
-    console.log('API Key:', process.env.GOOGLE_PLACE_API_KEY);
-    const apiKey = process.env.GOOGLE_PLACE_API_KEY;
-
-    if (!apiKey) {
-        return NextResponse.json({ error: 'Google Places API key is not configured' }, { status: 500 });
-    }
-
-    const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=reviews&key=${apiKey}`;
+export async function GET() {
+    const PLACE_ID = 'ChIJ2z4Y3nfM1IkRtMwLDbajEPU';
+    const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${PLACE_ID}&fields=reviews&key=${API_KEY}`;
 
     try {
-        const response = await axios.get(url);
+        const response = await fetch(url);
+        const data = await response.json();
 
-        if (response.data.status === 'OK') {
-            const reviews = response.data.result.reviews || [];
-            return NextResponse.json(reviews);
-        } else {
-            return NextResponse.json({ error: 'Google Places API returned an error', status: response.data.status, message: response.data.error_message }, { status: 500 });
+        if (!response.ok) {
+            throw new Error(`Google API responded with status ${response.status}: ${data.error_message || 'Unknown error'}`);
         }
+
+        if (!data.result || !data.result.reviews) {
+            return NextResponse.json({ error: 'No reviews found' }, { status: 404 });
+        }
+
+        return NextResponse.json(data.result.reviews);
     } catch (error) {
+        console.error('Error fetching reviews:', error.message);
         return NextResponse.json({ error: 'Failed to fetch reviews', details: error.message }, { status: 500 });
     }
 }

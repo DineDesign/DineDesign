@@ -58,7 +58,8 @@ export default function Menu() {
               <Card>
 
                 <Link href={`/menus/${encodeURIComponent(item.name)}`}>
-                  <CardActionArea>
+                  <CardActionArea
+                    sx={{ width: '100%', maxWidth: 200, margin: 'auto' }}>
                     <CardMedia component="img" image={item.image} alt={item.name} sx={{ width: 200, height: 200 }} />
                     <CardContent>
                       <Typography variant="h6">{item.name}</Typography>
