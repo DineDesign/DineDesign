@@ -12,7 +12,7 @@ export default function Menu() {
   const isXsScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
-    <Container maxWidth="md" className="p-9">
+    <Container id = "menu" maxWidth="md" className="p-9">
       <Typography variant="h2" align="center" gutterBottom>
         Menu
       </Typography>

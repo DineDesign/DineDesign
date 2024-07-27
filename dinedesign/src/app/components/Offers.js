@@ -47,7 +47,7 @@ export default function Offers() {
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
     return (
-        <Container className='p-5 w-full' maxWidth={false}>
+        <Container id = "offers" className='p-5 w-full' maxWidth={false}>
             <div className="custom-slider-container">
                 <Slider {...settings}>
                     {itemData.map((item, index) => (
