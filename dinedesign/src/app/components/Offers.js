@@ -1,22 +1,24 @@
 'use client'
 import React from 'react';
-import { Container, Typography, Card, CardContent, CardMedia, useMediaQuery, useTheme } from '@mui/material';
+import { Container, Typography, Card, CardContent, CardMedia, useMediaQuery, useTheme, Divider } from '@mui/material';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const itemData = [
     {
-        header: 'Our Special Offers',
+        sectionTitle: 'OFFERS',
+        header: 'Our Special Offers Dishes',
         description: 'Check out our amazing special offers!',
-        img1: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d',
-        img2: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4',
-        title1: 'Special Offer 1',
-        title2: 'Special Offer 2',
-        author1: 'Author 1',
-        author2: 'Author 2',
+        img1: 'BurgerOffer.png',
+        img2: 'PizzaOffer.png',
+        title1: 'Chicken Burger',
+        title2: 'Pizza',
+        author1: 'Our Authentic delicious and juicy burger full of flavour.',
+        author2: 'Our pizza features a perfect blend of crispy thin crust, rich tomato sauce, and premium toppings, baked to perfection for an unforgettable taste.',
     },
     {
+        sectionTitle: 'POPULAR',
         header: 'Popular Dishes',
         description: 'Discover our most popular dishes.',
         img1: 'https://images.unsplash.com/photo-1546069901-eacef0df6022',
@@ -28,8 +30,6 @@ const itemData = [
     },
     // Add more items as needed
 ];
-
-
 
 export default function Offers() {
     const settings = {
@@ -47,35 +47,43 @@ export default function Offers() {
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
     return (
-        <Container id = "offers" className='p-5 w-full' maxWidth={false}>
+        <Container id="offers" className='p-5 w-full' maxWidth={false}>
             <div className="custom-slider-container">
                 <Slider {...settings}>
                     {itemData.map((item, index) => (
                         <div key={index} className="slider-item">
-                            <Typography variant="h2" align="center" gutterBottom>
+                            <div className="section-title-container">
+                                <Divider />
+                                <Typography variant="bold" align="center" className="section-title font-normalText">
+                                        {item.sectionTitle}
+                                </Typography>
+                                <Divider />
+                            </div>
+                            <Typography variant="h2" align="center" gutterBottom className = "font-titleFont">
                                 {item.header}
                             </Typography>
-                            <Typography variant="body1" align="center" paragraph>
+                            <Typography variant="body1" align="center" paragraph className ="font-normalText">
                                 {item.description}
                             </Typography>
                             <div className={isSmallScreen ? 'flex flex-col items-center' : 'flex justify-center'}>
-                                <Card sx={{ maxWidth: 300, m: 2 }} >
+                                <Card sx={{ maxWidth: 350, m: 2 }} >
                                     <CardMedia
                                         component="img"
                                         sx={{ width: '100%', height: 200 }}
                                         image={item.img1}
+                                    
                                         alt={item.header + ' - Dish 1'}
                                     />
-                                    <CardContent>
-                                        <Typography gutterBottom variant="h5" component="div">
-                                            Dish 1
+                                    <CardContent >
+                                        <Typography gutterBottom variant="h5" component="div" className = "font-normalText">
+                                            {item.title1}
                                         </Typography>
-                                        <Typography variant="body2" color="text.secondary">
-                                            Description of Dish 1
+                                        <Typography variant="body2" color="text.secondary" className = "font-titleFont">
+                                            {item.author1}
                                         </Typography>
                                     </CardContent>
                                 </Card>
-                                <Card sx={{ maxWidth: 300, m: 2 }} >
+                                <Card sx={{ maxWidth: 350, m: 2 }} >
                                     <CardMedia
                                         component="img"
                                         sx={{ width: '100%', height: 200 }}
@@ -83,11 +91,11 @@ export default function Offers() {
                                         alt={item.header + ' - Dish 2'}
                                     />
                                     <CardContent>
-                                        <Typography gutterBottom variant="h5" component="div">
-                                            Dish 2
+                                        <Typography gutterBottom variant="h5" component="div" className = "font-normalText">
+                                            {item.title2}
                                         </Typography>
-                                        <Typography variant="body2" color="text.secondary">
-                                            Description of Dish 2
+                                        <Typography variant="body2" color="text.secondary" className = "font-titleFont">
+                                            {item.author2}
                                         </Typography>
                                     </CardContent>
                                 </Card>
@@ -114,7 +122,6 @@ export default function Offers() {
                 .slider-item {
                     outline: none;
                 }
-                /* Ensure dots are visible */
                 .slick-dots {
                     bottom: -30px;
                     z-index: 1;
@@ -126,6 +133,18 @@ export default function Offers() {
                 }
                 .slick-dots li.slick-active button:before {
                     opacity: 0.75;
+                }
+                .section-title-container {
+                    margin-bottom: 20px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                }
+                .section-title {
+                    padding: 10px 0;
+                    font-weight: bold;
+                    text-decoration: underline overline;
+                    text-underline-offset: 4px;
                 }
             `}</style>
         </Container>

@@ -7,7 +7,7 @@ const GoogleMapOverlay = () => {
   const handleClose = () => setIsOpen(false);
 
   return (
-    <div className= "">
+    <div className="">
       <button 
         onClick={handleOpen} 
         className="px-4 py-1 text-sm font-medium text-white bg-blue-600 rounded"
@@ -35,6 +35,14 @@ const GoogleMapOverlay = () => {
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             ></iframe>
+            <div className="mt-4 text-center">
+              <button 
+                onClick={handleClose} 
+                className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded hover:bg-blue-700"
+              >
+                Close Map
+              </button>
+            </div>
           </div>
         </div>
       )}

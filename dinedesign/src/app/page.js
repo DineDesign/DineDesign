@@ -11,14 +11,16 @@ import { staticGenerationAsyncStorage } from "next/dist/client/components/static
 export default function Home() {
   return (
     <>
-      <Title />
-      <Offers />
-      <Menu />
-      <Review />
-      <Reservation />
-      <Contact />
-      <Footer />
-
+      <Title  />
+      <div className = "bg-rose-50">
+      
+        <Offers />
+        <Menu />
+        <Review />
+        <Reservation />
+        <Contact />
+        <Footer />
+      </div>
     </>
   );
 }

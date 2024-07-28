@@ -7,15 +7,15 @@ import Link from 'next/link';
 const hours = {
   "time": [
     {"monday":"10:00-22:00"},
-    {"tuesday":"10:00-22:00"},
+    {"tuesday":"10:00-15:00"},
     {"wednesday":"10:00-22:00"},
     {"thursday":"10:00-22:00"},
-    {"friday":"10:00-22:00"},
-    {"saturday":"10:00-23:00"},
+    {"friday":"10:00-24:00"},
+    {"saturday":"10:00-22:00"},
     {"sunday":"10:00-22:00"}
   ],
   "closed": [
-    {"id1":"2024-07-21"},
+    {"id1":"2024-01-1"},
     {"id2":"2024-12-25"},
     {"id3":"2024-12-31"}
   ]
@@ -28,7 +28,7 @@ const getDayName = (date) => {
 
 const isHoliday = (date) => {
   const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+  const month = String(date.getMonth() + 1).padStart(2, '0');
   const day = String(date.getDate()).padStart(2, '0');
   const dateString = `${year}-${month}-${day}`;
   
@@ -37,6 +37,23 @@ const isHoliday = (date) => {
     return holidayDate === dateString;
   });
   return isHoliday;
+};
+
+const convertTo12Hour = (time) => {
+  const [hours, minutes] = time.split(':');
+  const hour = parseInt(hours, 10);
+  const ampm = hour >= 12 ? 'PM' : 'AM';
+  const hour12 = hour % 12 || 12;
+  return `${hour12}:${minutes} ${ampm}`;
+};
+
+const getTodayHours = () => {
+  const now = new Date();
+  const day = getDayName(now);
+  const hoursToday = hours.time.find(h => h[day])[day].split('-');
+  const openTime = convertTo12Hour(hoursToday[0]);
+  const closeTime = convertTo12Hour(hoursToday[1]);
+  return `${openTime} - ${closeTime}`;
 };
 
 const checkTime = () => {
@@ -77,6 +94,7 @@ export default function StickyNavbar() {
   const [status, setStatus] = useState({ status: "", color: "" });
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
+  const [todayHours, setTodayHours] = useState("");
 
   useEffect(() => {
     const handleResize = () => {
@@ -88,10 +106,8 @@ export default function StickyNavbar() {
     const handleScroll = () => {
       if (window.innerWidth >= 960) {
         if (window.scrollY > lastScrollY) {
-          // Scrolling down
           setIsVisible(false);
         } else {
-          // Scrolling up
           setIsVisible(true);
         }
         setLastScrollY(window.scrollY);
@@ -103,10 +119,11 @@ export default function StickyNavbar() {
 
     const updateStatus = () => {
       setStatus(checkTime());
+      setTodayHours(getTodayHours());
     };
 
     updateStatus();
-    const intervalId = setInterval(updateStatus, 60000); // Update every minute
+    const intervalId = setInterval(updateStatus, 60000);
 
     return () => {
       window.removeEventListener("resize", handleResize);
@@ -130,19 +147,24 @@ export default function StickyNavbar() {
   return (
     <nav className={`sticky top-0 z-10 h-max w-full rounded-none px-4 py-2 lg:px-8 lg:py-4 bg-white shadow transition-transform duration-300 ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}>
       <div className="flex items-center justify-between text-blue-gray-900">
-        <div className="flex mr-4 cursor-pointer py-1.5 font-medium gap-4">
-          <Link className="hover:text-gray-600" href="/">Dine Design</Link>
-          <div style={{ color: status.color }}>
-            {status.status}
-          </div>
-          <div>
-            <span className="text-xs">
-              Hours: 10:00 AM - 10:00 PM
-            </span>
-          </div>
-          <div>
-            <GoogleMapOverlay />
-          </div>
+        <div className="flex mr-4 cursor-pointer py-1.5 font-medium gap-4 items-baseline">
+
+            <Link className="hover:text-gray-600 text-xl align-baseline" href="/">Dine Design</Link>
+
+            <div style={{ color: status.color }} className="align-baseline">
+                {status.status}
+            </div>
+
+            <div className="align-baseline">
+                <span className="text-xs hidden sm:block align-baseline">
+                    Today's Hours: {todayHours}
+                </span>
+            </div>
+
+            <div className="align-baseline">
+                <GoogleMapOverlay />
+            </div>
+
         </div>
         
         <div className="flex items-center gap-4">

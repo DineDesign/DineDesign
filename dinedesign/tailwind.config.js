@@ -1,5 +1,6 @@
 
 
+const defaultTheme = require('tailwindcss/defaultTheme')
 
 /** @type {import('tailwindcss').Config} */
 
@@ -11,6 +12,7 @@ module.exports = {
     './components/**/*.{js,jsx}',
     './app/**/*.{js,jsx}',
     './src/**/*.{js,jsx}',
+    './page/**/*.{js,jsx}',
   ],
   prefix: "",
   theme: {
@@ -25,10 +27,11 @@ module.exports = {
       fontFamily: {
         customFont: ['"Custom Font"', "sans-serif"],
         cursive: ["Cedarville Cursive", "cursive"],
-        title: ["Raleway","sans-serif"]
+        title: ["Raleway","sans-serif"],
+        normalText: ["Lora","serif"],
         // Add more custom font families as needed
       },
-      
+
       colors: {
         brown: {
           50: '#f5f5f5',

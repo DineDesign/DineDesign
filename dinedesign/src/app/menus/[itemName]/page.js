@@ -88,21 +88,22 @@ export default function MenuItem({ params }) {
                     <CardContent>
                         <Typography variant="h4" className="mb-4">{item.name}</Typography>
                         <Typography variant="body1" paragraph>
-                            Detailed description of {item.name} goes here. This paragraph should contain
-                            information about the dish, its ingredients, and any other relevant details.
+
+                            {item.detail}
+
                         </Typography>
                         <List>
                             <ListItem>
                                 <ListItemIcon><LocalFireDepartment color="error" /></ListItemIcon>
-                                <ListItemText primary="Spice Level" secondary="Medium" />
+                                <ListItemText primary="Spice Level" secondary={item.spiceLevel} />
                             </ListItem>
                             <ListItem>
                                 <ListItemIcon><Restaurant color="primary" /></ListItemIcon>
-                                <ListItemText primary="Flavor Profile" secondary="Savory with a hint of sweetness" />
+                                <ListItemText primary="Flavor Profile" secondary={item.flavourProfile} />
                             </ListItem>
                             <ListItem>
                                 <ListItemIcon><People color="action" /></ListItemIcon>
-                                <ListItemText primary="Serving Size" secondary="2-3 people" />
+                                <ListItemText primary="Serving Size" secondary={item.servingSize} />
                             </ListItem>
                         </List>
                     </CardContent>
