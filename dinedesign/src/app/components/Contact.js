@@ -1,118 +1,96 @@
+'use client'
+
+import React from 'react';
+import { 
+  Box, 
+  Card, 
+  CardContent, 
+  Container, 
+  Grid, 
+  Typography, 
+  useMediaQuery 
+} from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import EmailIcon from '@mui/icons-material/Email';
+
 export default function Contact() {
-    return (
-        <div className="bg-rose-50 pt-20" id = "contact">
-            <ul className="flex flex-col md:flex-row justify-between items-center gap-y-8 px-6 md:px-16 lg:px-24 pt-4">
-                <li className="flex items-center">
-                    <img src="https://www.svgrepo.com/show/532540/location-pin-alt-1.svg" width="40" height="40" alt="location" />
-                    <div className="ml-3">
-                        <b className="text-xl">Locate us</b>
-                        <p className="text-xs">Riverside 25, San Fran, Cali</p>
-                    </div>
-                </li>
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
-                <li className="flex items-center">
-                    <img src="https://www.svgrepo.com/show/529492/clock-circle.svg" width="40" height="40" alt="clock" />
-                    <div className="ml-3">
-                        <b className="text-xl">Open Hours</b>
-                        <p className="text-xs">Mon - Fri: 9:00 am - 9:00 pm</p>
-                    </div>
-                </li>
+  return (
+    <Box sx={{ bgcolor: 'rose.50', pt: 8, pb: 8 }}>
+      <Container maxWidth="lg">
+        {/* Contact Info Cards */}
+        <Grid container spacing={4} sx={{ mb: 8 }}>
+          {[
+            { icon: <LocationOnIcon />, title: 'Locate us', content: 'Riverside 25, San Fran, Cali' },
+            { icon: <AccessTimeIcon />, title: 'Open Hours', content: 'Mon - Fri: 9:00 am - 9:00 pm' },
+            { icon: <EmailIcon />, title: 'Reservation', content: 'daveinder2007@gmail.com' },
+          ].map((item, index) => (
+            <Grid item xs={12} md={4} key={index}>
+              <Card elevation={3}>
+                <CardContent sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', p: 3 }}>
+                  {item.icon}
+                  <Box sx={{ ml: 2 }}>
+                    <Typography variant="h6" component="div">
+                      {item.title}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      {item.content}
+                    </Typography>
+                  </Box>
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
 
-                <li className="flex items-center">
-                    <img src="https://www.svgrepo.com/show/372448/form.svg" width="40" height="40" alt="form" />
-                    <div className="ml-3">
-                        <b className="text-xl">Reservation</b>
-                        <p className="text-xs">daveinder2007@gmail.com</p>
-                    </div>
-                </li>
-            </ul>
-
-            <div className="flex flex-col lg:flex-row items-center lg:items-start justify-center mt-10 mx-4 sm:mx-8 md:mx-12 lg:mx-20 pb-10">
-                <div className="w-full lg:w-1/2 flex justify-center lg:justify-end mb-8 lg:mb-0 sm:pt-16">
-                    <img
-                        src="Restaurant.jpg"
-                        alt="Restaurant"
-                        className="rounded object-cover w-full max-w-md h-auto lg:max-w-lg"
-                    />
-                </div>
-
-                <div className="w-full lg:w-1/2 flex pt-5 ">
-                    <div className="border-l-2 border-gray-500 mx-4 hidden lg:block"></div>
-                    <div id="text" className="pt-5 pb-10 space-y-8 lg:space-y-10 px-4 lg:px-8">
-                        <div>
-                            <h1 className="text-2xl mb-2">The Story</h1>
-                            <p className="text-sm">
-                                This is a paragraph of text that will be displayed next to the image. When the screen size
-                                is smaller, the image and text will stack vertically, and the line will be hidden.
-                            </p>
-                        </div>
-
-                        <div className="grid sm:grid-cols-2 grid-cols-1 gap-5">
-                            <div>
-                                <h1 className="text-2xl mb-2">1996</h1>
-                                <p className="text-sm">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut ab minima error, accusantium odit sint!
-                                </p>
-                            </div>
-                            <div>
-                                <h1 className="text-xl mb-2">1996</h1>
-                                <p className="text-sm">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut ab minima error, accusantium odit sint!
-                                </p>
-                            </div>
-                        </div>
-
-                        <div>
-                            <h1 className="text-2xl">Dave Singh</h1>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
+        {/* Story Section */}
+        <Grid container spacing={4} alignItems="center">
+          <Grid item xs={12} md={6}>
+            <Box 
+              component="img"
+              src="Restaurant.jpg"
+              alt="Restaurant"
+              sx={{
+                width: '100%',
+                height: 'auto',
+                maxHeight: 400,
+                objectFit: 'cover',
+                borderRadius: 2,
+              }}
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Box sx={{ pl: { md: 4 }, borderLeft: { md: '2px solid', borderColor: 'grey.300' } }}>
+              <Typography variant="h4" gutterBottom>
+                The Story
+              </Typography>
+              <Typography variant="body1" paragraph>
+                This is a paragraph of text that will be displayed next to the image. When the screen size
+                is smaller than the `md` breakpoint, the image and text will stack vertically.
+              </Typography>
+              <Grid container spacing={2}>
+                {['1996', '2005'].map((year, index) => (
+                  <Grid item xs={12} sm={6} key={index}>
+                    <Typography variant="h5" gutterBottom>
+                      {year}
+                    </Typography>
+                    <Typography variant="body2">
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut ab minima error, accusantium odit sint!
+                    </Typography>
+                  </Grid>
+                ))}
+              </Grid>
+              <Typography variant="h5" sx={{ mt: 4 }}>
+                Dave Singh
+              </Typography>
+            </Box>
+          </Grid>
+        </Grid>
+      </Container>
+    </Box>
+  );
 }
-
-
-
-
-
-
-
-            {/* <div className="flex flex-col md:flex-row items-center justify-center pt-12">
-                <img
-                src="Restaurant.jpg"
-                alt="Placeholder"
-                className="w-70 h-42 md:w-1/4 md:h-auto"
-                 />
-                <div className="hidden md:block border-l-2 border-gray-500 h-32 mx-4"></div>
-                <div className="text-center pt-5 sm:pt-0 md:text-left md:w-1/2">
-                    <h1 className = "text-center text-xl">
-                        The Story
-                    </h1>
-                    <p>
-                    This is a paragraph of text that will be displayed next to the image. When the screen size
-                    is smaller than the `md` breakpoint, the image, line, and text will stack vertically, and the line will be hidden.
-                    </p>
-                    <div class ="flex flex-wrap">
-                        <div class ="">
-                            <h1 className = "text-xl">
-                                1996
-                            </h1>
-                            <p>
-                                Lorem ipsum dolor sit amet.
-                            </p>
-                        </div>
-                        <div class ="text-center">
-                            <h1 className = "text-xl ">
-                                1996
-                            </h1>
-                            <p>
-                                Lorem ipsum dolor sit amet.
-                            </p>
-                        </div>
-                    </div>
-                  
-                </div>
-            </div>
-            {/* <img class = "object-cover  ease-in-out" src = "Restaurant.jpg" alt ="what"/> */}
-            {/* <div className="w-32 h-full bg-blue-500 "></div> */}

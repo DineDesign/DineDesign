@@ -1,4 +1,6 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 
 @import "slick-carousel/slick/slick.css";
 @import "slick-carousel/slick/slick-theme.css";
@@ -77,7 +79,7 @@
 .background-image {
   background: 
     linear-gradient(
-      rgba(0, 0, 0, 0.9), /* Adjusted the opacity of the black tint */
+      rgba(0, 0, 0, 0.8), /* Adjusted the opacity of the black tint */
       rgba(0, 0, 0, 0.4)
     ),
     url('./public/DineDesignBackground.png');
