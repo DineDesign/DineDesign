@@ -3,6 +3,5 @@ export default function Login() {
         <a href="/api/auth/login">
             Login
         </a>
-
     );
 }
