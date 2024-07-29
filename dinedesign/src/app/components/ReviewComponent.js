@@ -1,11 +1,12 @@
-'use client'
 import React from 'react'
 import { Box, Typography, Rating, Avatar, Paper, Stack } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
     padding: theme.spacing(3),
-    marginBottom: theme.spacing(2),
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
     borderRadius: theme.shape.borderRadius,
     boxShadow: '0 3px 5px 2px rgba(0, 0, 0, .03)',
     transition: 'box-shadow 0.3s ease-in-out',
@@ -20,15 +21,26 @@ const AvatarStyled = styled(Avatar)(({ theme }) => ({
     marginRight: theme.spacing(2),
 }))
 
-export default function ReviewComponent({ name, rating, comment, avatar }) {
+export default function ReviewComponent({ name, rating, comment, avatar, time }) {
     return (
         <StyledPaper elevation={1}>
-            <Stack direction="row" spacing={2} alignItems="center">
+            <Stack direction="row" spacing={2} alignItems="flex-start">
                 <AvatarStyled alt={name} src={avatar} />
                 <Box flex={1}>
                     <Typography variant="h6" gutterBottom>{name}</Typography>
-                    <Rating value={rating} readOnly precision={0.5} sx={{ mb: 1 }} />
-                    <Typography variant="body1" color="text.secondary">
+                    <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 1 }}>
+                        <Rating value={rating} readOnly precision={0.5} />
+                        <Typography variant="body2" color="text.secondary">
+                            {time}
+                        </Typography>
+                    </Stack>
+                    <Typography variant="body1" color="text.secondary" sx={{
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        display: '-webkit-box',
+                        WebkitLineClamp: 3,
+                        WebkitBoxOrient: 'vertical'
+                    }}>
                         {comment}
                     </Typography>
                 </Box>
