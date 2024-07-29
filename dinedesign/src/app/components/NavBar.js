@@ -222,7 +222,7 @@ export default function StickyNavbar() {
               <span className="glf-button" data-glf-cuid="94badddd-5f1d-46f5-900e-fe497c12f5ff" data-glf-ruid="c07978a7-6d4a-48d4-8b9b-a15ff281c075">See MENU & Order</span>
             </button>
             <button className="w-full px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded-lg">
-              Sign in
+            <span className="button" data-glf-cuid="94badddd-5f1d-46f5-900e-fe497c12f5ff" data-glf-ruid="c07978a7-6d4a-48d4-8b9b-a15ff281c075" data-glf-reservation="true">Table Reservation</span> 
             </button>
           </div>
         </div>
