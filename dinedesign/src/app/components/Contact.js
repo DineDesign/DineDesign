@@ -20,6 +20,8 @@ export default function Contact() {
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
+    <div id = "contact">
+
     <Box sx={{ bgcolor: 'rose.50', pt: 8, pb: 8 }}>
       <Container maxWidth="lg">
         {/* Contact Info Cards */}
@@ -92,5 +94,6 @@ export default function Contact() {
         </Grid>
       </Container>
     </Box>
+    </div>
   );
 }
