@@ -3,23 +3,23 @@ import React, { useState, useEffect } from "react";
 import { Link as ScrollLink } from 'react-scroll';
 import GoogleMapOverlay from "./Maps";
 import Link from 'next/link';
-
-const hours = {
-  "time": [
-    {"monday":"10:00-22:00"},
-    {"tuesday":"10:00-15:00"},
-    {"wednesday":"10:00-22:00"},
-    {"thursday":"10:00-22:00"},
-    {"friday":"10:00-24:00"},
-    {"saturday":"10:00-22:00"},
-    {"sunday":"10:00-22:00"}
-  ],
-  "closed": [
-    {"id1":"2024-01-1"},
-    {"id2":"2024-12-25"},
-    {"id3":"2024-12-31"}
-  ]
-};
+import hours from '../Data/hours.json'
+// const hours = {
+//   "time": [
+//     {"monday":"10:00-22:00"},
+//     {"tuesday":"10:00-15:00"},
+//     {"wednesday":"10:00-22:00"},
+//     {"thursday":"10:00-22:00"},
+//     {"friday":"10:00-24:00"},
+//     {"saturday":"10:00-22:00"},
+//     {"sunday":"10:00-22:00"}
+//   ],
+//   "closed": [
+//     {"id1":"2024-01-1"},
+//     {"id2":"2024-12-25"},
+//     {"id3":"2024-12-31"}
+//   ]
+// };
 
 const getDayName = (date) => {
   const days = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];

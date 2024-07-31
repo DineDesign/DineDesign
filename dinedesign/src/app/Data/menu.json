@@ -1,4 +1,6 @@
 {
+    "Title":"Menu",
+    "Description":"Our extensive menu offers mouth watering dishes, made fresh every single day. Click on an item to learn more!",
     "Appetizers": [
         { 
             "name": "Samosa", 
@@ -91,8 +93,54 @@
             "flavourProfile": "Savory, spicy, and tangy",
             "servingSize": "2-3 people",
             "detail": "Chole Bhature is a popular North Indian dish consisting of spicy chickpeas (chole) served with deep-fried bread (bhature). This dish is a favorite at our family gatherings, especially during special occasions. The tangy and spicy chickpeas, paired with the fluffy bhature, make for a delicious and satisfying meal that is sure to be a hit with everyone."
+        },
+        { 
+            "name": "Lamb Vindaloo", 
+            "price": 15, 
+            "image": "https://www.cubesnjuliennes.com/wp-content/uploads/2023/10/Lamb-Vindaloo-Recipe.jpg",
+            "spiceLevel": "Very Spicy",
+            "flavourProfile": "Tangy, spicy, and bold",
+            "servingSize": "2-3 people",
+            "detail": "Lamb Vindaloo is a fiery Goan dish with roots in Portuguese cuisine. This dish features tender lamb pieces marinated in vinegar and spices, then cooked in a spicy sauce with potatoes. Our recipe balances the bold flavors with just the right amount of heat, making it a favorite for those who enjoy spicy food. This dish is a great representation of the diverse culinary influences in Indian cuisine."
+        },
+        { 
+            "name": "Fish Curry", 
+            "price": 13, 
+            "image": "https://www.teaforturmeric.com/wp-content/uploads/2023/06/Fish-Curry-Recipe.jpg",
+            "spiceLevel": "Medium",
+            "flavourProfile": "Savory, tangy, and aromatic",
+            "servingSize": "2-3 people",
+            "detail": "Fish Curry is a staple in coastal Indian cuisine, particularly in regions like Goa and Kerala. Our version of this dish features fresh fish cooked in a tangy and aromatic coconut-based sauce. The use of traditional spices and ingredients gives this curry its distinctive flavor, making it a delicious and wholesome meal that's perfect for seafood lovers."
+        },
+        { 
+            "name": "Dal Makhani", 
+            "price": 10, 
+            "image": "https://www.funfoodfrolic.com/wp-content/uploads/2023/04/Dal-Makhani-Blog.jpg",
+            "spiceLevel": "Mild",
+            "flavourProfile": "Creamy, rich, and earthy",
+            "servingSize": "2-3 people",
+            "detail": "Dal Makhani is a classic North Indian dish made with black lentils and kidney beans, cooked in a rich and creamy tomato-based sauce. This dish is slow-cooked to perfection, allowing the flavors to meld beautifully. Our family's recipe adds a touch of love and tradition to this comforting and satisfying meal, which is best enjoyed with naan or rice."
+        },
+        { 
+            "name": "Aloo Gobi", 
+            "price": 9, 
+            "image": "https://www.indianhealthyrecipes.com/wp-content/uploads/2022/03/aloo-gobi-recipe.jpg",
+            "spiceLevel": "Medium",
+            "flavourProfile": "Savory, earthy, and mildly spiced",
+            "servingSize": "2-3 people",
+            "detail": "Aloo Gobi is a popular vegetarian dish made with potatoes (aloo) and cauliflower (gobi), cooked with a blend of spices. This simple yet flavorful dish is a staple in our family, often served during weeknight dinners. The combination of tender potatoes and cauliflower, infused with aromatic spices, makes this dish a comforting and wholesome meal that's perfect for any occasion."
+        },
+        { 
+            "name": "Chicken Korma", 
+            "price": 12, 
+            "image": "https://www.eitanbernath.com/wp-content/uploads/2021/12/Eitan-Bernath-Chicken-Korma-2-819x1024.jpg",
+            "spiceLevel": "Mild",
+            "flavourProfile": "Rich, creamy, and aromatic",
+            "servingSize": "2-3 people",
+            "detail": "Chicken Korma is a luxurious dish made with chicken pieces cooked in a rich and creamy sauce made from yogurt, cream, and a blend of aromatic spices. This dish has a royal heritage, being a favorite in Mughlai cuisine. Our version is a family favorite, enjoyed during special occasions and celebrations. The delicate flavors and creamy texture make this dish a true delight for the senses."
         }
     ],
+
     "Breads": [
         { 
             "name": "Naan", 

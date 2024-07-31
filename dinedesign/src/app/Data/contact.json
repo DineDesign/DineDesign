@@ -1,0 +1,37 @@
+{
+    
+    "contactCards": [
+      {
+        "icon": "LocationOn",
+        "title": "Locate us",
+        "content": "Riverside 25, San Fran, Cali"
+      },
+      {
+        "icon": "AccessTime",
+        "title": "Open Hours",
+        "content": "Mon - Fri: 9:00 am - 9:00 pm"
+      },
+      {
+        "icon": "Email",
+        "title": "Reservation",
+        "content": "daveinder2007@gmail.com"
+      }
+    ],
+    "storySection": {
+      "imageSrc": "Restaurant.jpg",
+      "imageAlt": "Restaurant",
+      "title": "The Story",
+      "mainParagraph": "This is a paragraph of text that will be displayed next to the image. When the screen size is smaller than the `md` breakpoint, the image and text will stack vertically.",
+      "yearInfo": [
+        {
+          "year": "1996",
+          "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut ab minima error, accusantium odit sint!"
+        },
+        {
+          "year": "2005",
+          "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut ab minima error, accusantium odit sint!"
+        }
+      ],
+      "signature": "Dine Design"
+    }
+  }

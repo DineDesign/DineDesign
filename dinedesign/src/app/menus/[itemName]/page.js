@@ -86,8 +86,8 @@ export default function MenuItem({ params }) {
             <div className="w-full lg:w-1/3">
                 <Card className="h-full">
                     <CardContent>
-                        <Typography variant="h4" className="mb-4">{item.name}</Typography>
-                        <Typography variant="body1" paragraph>
+                        <Typography variant="h4" className="mb-4 ">{item.name}</Typography>
+                        <Typography variant="body1" paragraph className='font-normalText'>
 
                             {item.detail}
 
