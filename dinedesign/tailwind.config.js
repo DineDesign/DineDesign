@@ -29,10 +29,15 @@ module.exports = {
         cursive: ["Cedarville Cursive", "cursive"],
         title: ["Raleway","sans-serif"],
         normalText: ["Lora","serif"],
+
         // Add more custom font families as needed
       },
 
       colors: {
+        back:{
+          50: '#FFF8F5',
+        },
+
         brown: {
           50: '#f5f5f5',
           100: '#e0e0e0',

@@ -1,4 +1,5 @@
 'use client'
+
 import React, { useState, useEffect } from 'react';
 import { Container, Typography, Box, CircularProgress, Button, Grid } from '@mui/material';
 import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material';
@@ -53,7 +54,7 @@ export default function Review() {
     };
 
     return (
-        <Container maxWidth="md" className='p-5' id="reviews">
+        <Container maxWidth="md" className='p-5 pb-20' id="reviews">
             <Typography variant="h3" gutterBottom sx={{ mb: 4, fontWeight: 'bold', display: 'flex', justifyContent: 'center', textAlign: 'center' }}>
                 Customer Reviews
             </Typography>

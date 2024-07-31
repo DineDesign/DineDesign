@@ -4,32 +4,8 @@ import { Container, Typography, Card, CardContent, CardMedia, useMediaQuery, use
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import itemData from '../Data/slider.json'
 
-const itemData = [
-    {
-        sectionTitle: 'OFFERS',
-        header: 'Our Special Offers Dishes',
-        description: 'Check out our amazing special offers!',
-        img1: 'BurgerOffer.png',
-        img2: 'PizzaOffer.png',
-        title1: 'Chicken Burger',
-        title2: 'Pizza',
-        author1: 'Our Authentic delicious and juicy burger full of flavour.',
-        author2: 'Our pizza features a perfect blend of crispy thin crust, rich tomato sauce, and premium toppings, baked to perfection for an unforgettable taste.',
-    },
-    {
-        sectionTitle: 'POPULAR',
-        header: 'Popular Dishes',
-        description: 'Discover our most popular dishes.',
-        img1: 'https://images.unsplash.com/photo-1546069901-eacef0df6022',
-        img2: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836',
-        title1: 'Dish 1',
-        title2: 'Dish 2',
-        author1: 'Author 1',
-        author2: 'Author 2',
-    },
-    // Add more items as needed
-];
 
 export default function Offers() {
     const settings = {

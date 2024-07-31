@@ -3,23 +3,8 @@ import React, { useState, useEffect } from "react";
 import { Link as ScrollLink } from 'react-scroll';
 import GoogleMapOverlay from "./Maps";
 import Link from 'next/link';
+import hours from '../Data/hours.json'
 
-const hours = {
-  "time": [
-    {"monday":"10:00-22:00"},
-    {"tuesday":"10:00-15:00"},
-    {"wednesday":"10:00-22:00"},
-    {"thursday":"10:00-22:00"},
-    {"friday":"10:00-24:00"},
-    {"saturday":"10:00-22:00"},
-    {"sunday":"10:00-22:00"}
-  ],
-  "closed": [
-    {"id1":"2024-01-1"},
-    {"id2":"2024-12-25"},
-    {"id3":"2024-12-31"}
-  ]
-};
 
 const getDayName = (date) => {
   const days = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
@@ -176,6 +161,7 @@ export default function StickyNavbar() {
             <button className="hidden lg:inline-block px-4 py-2 text-sm font-medium text-white bg-yellow-600 rounded-lg">
               <span className="button" data-glf-cuid="94badddd-5f1d-46f5-900e-fe497c12f5ff" data-glf-ruid="c07978a7-6d4a-48d4-8b9b-a15ff281c075" data-glf-reservation="true">Table Reservation</span>
             </button>
+            <script src="https://www.fbgcdn.com/embedder/js/ewm2.js" defer async ></script>
           </div>
           <button
             className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"

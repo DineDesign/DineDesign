@@ -1,58 +1,62 @@
 export default function Footer() {
     return (
-        <footer class="bg-blue-100/90 font-sans dark:bg-gray-900 ">
-            <div class="container px-6 py-12 mx-auto  ">
-
-
-                <div class="grid grid-cols-1 gap-6 lg:grid-cols-4">
-
-                    <div className =" sm:order-1">
-                        <p class="font-semibold text-gray-800 dark:text-white">Quick Link</p>
-
-                        <div class="flex flex-col items-start mt-5 space-y-2">
-                            <p class="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:cursor-pointer hover:text-blue-500">Menu</p>
-                            <p class="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:cursor-pointer hover:text-blue-500">Who We Are</p>
-                            <p class="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:cursor-pointer hover:text-blue-500">Events</p>
-                            <p class="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:cursor-pointer hover:text-blue-500">Contact</p>
-
-                        </div>
-                    </div>
-
-                    <div class="order-first sm:order-2 sm:justify-self-end ">
-                        <p class="font-bold text-gray-800 dark:text-white text-2xl ">DineDesign</p>
-                    </div>
-
-                    <div class="sm:col-span-2  sm:order-3  lg:justify-self-end sm:justify-self-center justify-self-start ">
-                        <h1 class="max-w-lg text-xl font-semibold tracking-tight text-gray-800 xl:text-sm dark:text-white">Subscribe our newsletter to get an update.</h1>
-
-                        <div class="flex flex-col mx-auto mt-6 space-y-3 md:space-y-0 md:flex-row">
-                            <input id="email" type="text" class="px-2 pb-2 text-gray-700 border-b border-gray-400 bg-transparent focus:border-blue-400 focus:outline-none focus:ring-0 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 dark:focus:border-blue-300" placeholder="Email Address" />
-                            <button class="w-full px-6 py-2.5 text-sm font-medium tracking-wider text-white transition-colors duration-300 transform md:w-auto md:mx-4 focus:outline-none bg-gray-800 rounded-lg hover:bg-gray-700 focus:ring focus:ring-gray-300 focus:ring-opacity-80">
-                                Subscribe
-                            </button>
-                        </div>
-                    </div>
-
-                </div>
-
-                <hr class="my-6 border-gray-200 md:my-8 dark:border-gray-700 h-2" />
-
-                {/* <div class="sm:flex sm:items-center sm:justify-between ">
-                    <div class="flex flex-1 gap-4 hover:cursor-pointer">
-                        <img src="https://www.svgrepo.com/show/303139/google-play-badge-logo.svg" width="130" height="110" alt="" />
-                        <img src="https://www.svgrepo.com/show/303128/download-on-the-app-store-apple-logo.svg" width="130" height="110" alt="" />
-                    </div> */}
-
-                    <div class="flex gap-4 hover:cursor-pointer justify-center ">
-                        <img src="https://www.svgrepo.com/show/303114/facebook-3-logo.svg" width="30" height="30" alt="fb" />
-                        <img src="https://www.svgrepo.com/show/303115/twitter-3-logo.svg" width="30" height="30" alt="tw" />
-                        <img src="https://www.svgrepo.com/show/303145/instagram-2-1-logo.svg" width="30" height="30" alt="inst" />
-                    </div>
-                {/* </div> */}
-                <p class="font-sans p-8 text-start md:text-center md:text-lg md:p-4">© 2024 DineDesign. All rights reserved.</p>
+      <footer className="bg-gray-100 font-sans text-gray-800 dark:bg-gray-900 dark:text-white">
+        <div className="container mx-auto px-6 py-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="mb-8 md:mb-0">
+              <h2 className="text-3xl font-bold mb-6">DineDesign</h2>
+              <p className="text-sm">Crafting culinary experiences since 2024.</p>
             </div>
-        </footer>
-    )
-
-
-}
+  
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+              <ul className="space-y-2">
+                {['Menu', 'Who We Are', 'Events', 'Contact'].map((item) => (
+                  <li key={item}>
+                    <a href="#" className="hover:text-blue-500 transition-colors duration-300">
+                      {item}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+  
+            <div className="lg:col-span-2">
+              <h3 className="text-lg font-semibold mb-4">Subscribe to Our Newsletter</h3>
+              <p className="mb-4 text-sm">Stay updated with our latest offers and events.</p>
+              <form className="flex flex-col sm:flex-row gap-4">
+                <input
+                  type="email"
+                  placeholder="Your email address"
+                  className="flex-grow px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700"
+                />
+                <button
+                  type="submit"
+                  className="px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors duration-300"
+                >
+                  Subscribe
+                </button>
+              </form>
+            </div>
+          </div>
+  
+          <hr className="my-8 border-gray-200 dark:border-gray-700" />
+  
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="flex space-x-4 mb-4 md:mb-0">
+              {['facebook', 'twitter', 'instagram'].map((social) => (
+                <a key={social} href="#" className="text-gray-400 hover:text-blue-500 transition-colors duration-300">
+                  <img
+                    src={`https://www.svgrepo.com/show/303${social === 'facebook' ? '114/facebook-3-logo' : social === 'twitter' ? '115/twitter-3-logo' : '145/instagram-2-1-logo'}.svg`}
+                    alt={social}
+                    className="w-6 h-6"
+                  />
+                </a>
+              ))}
+            </div>
+            <p className="text-sm text-center">© 2024 DineDesign. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+    );
+  }
