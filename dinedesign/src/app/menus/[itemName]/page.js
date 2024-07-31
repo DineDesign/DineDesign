@@ -3,8 +3,7 @@
 import { notFound } from 'next/navigation';
 import { Typography, Card, CardMedia, CardContent, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
 import { LocalFireDepartment, Restaurant, People } from '@mui/icons-material';
-import menuData from '../../Menu/menu.json';
-import { generateStaticParams } from './generateStaticParams';
+import menuData from '../../Data/menu.json';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -27,7 +26,7 @@ export default function MenuItem({ params }) {
 
     const { itemName } = params;
 
-    const item = Object.values(menuData).flat().find(
+    const item = Object.values(menuData.MenuItems).flat().find(
         menuItem => menuItem.name === decodeURIComponent(itemName)
     );
 

@@ -2,53 +2,229 @@
 import { useState, useEffect } from 'react';
 import { 
   AppBar, Toolbar, Typography, IconButton, Drawer, List, ListItem, 
-  ListItemText, Card, CardContent, Button, Box
+  ListItemText, Card, CardContent, Button, Box, TextField, Grid, 
+  Paper, Divider, Fab, Dialog, DialogTitle, DialogContent, DialogActions,
+  Select, MenuItem
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import CloseIcon from '@mui/icons-material/Close';
+import AddIcon from '@mui/icons-material/Add';
+import DeleteIcon from '@mui/icons-material/Delete';
 
-// Array of website sections for the CMS
 const websiteSections = [
-  { title: 'Home Page', description: 'Edit main landing page content' },
-  { title: 'Menu', description: 'Update food and drink items' },
-  { title: 'About Us', description: 'Modify restaurant information' },
-  { title: 'Contact', description: 'Change contact details and form' },
-  { title: 'Reservations', description: 'Adjust reservation system settings' },
+  { title: 'Contact', description: 'Edit contact information', endpoint: '/api/contact', canAdd: false },
+  { title: 'Hours', description: 'Update opening hours', endpoint: '/api/hours', canAdd: true },
+  { title: 'Menu', description: 'Modify menu items', endpoint: '/api/menu', canAdd: true },
+  { title: 'Slider', description: 'Edit slider content', endpoint: '/api/slider', canAdd: true },
+  { title: 'Title', description: 'Change website title', endpoint: '/api/title', canAdd: false },
 ];
 
-export default function CMSPage() {
-  // State for sidebar open/close
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  // State for expanded card index
-  const [expandedCard, setExpandedCard] = useState(null);
-  // State for controlling the expansion animation
-  const [isExpanding, setIsExpanding] = useState(false);
+const menuItemTemplate = {
+  name: '',
+  price: 0,
+  image: '',
+  spiceLevel: '',
+  flavourProfile: '',
+  servingSize: '',
+  detail: ''
+};
 
-  // Toggle sidebar open/close
+export default function CMSPage() {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [expandedCard, setExpandedCard] = useState(null);
+  const [isExpanding, setIsExpanding] = useState(false);
+  const [currentData, setCurrentData] = useState(null);
+  const [newItemDialogOpen, setNewItemDialogOpen] = useState(false);
+  const [newItem, setNewItem] = useState({});
+
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
 
-  // Handle card expansion
-  const toggleCard = (index) => {
+  const toggleCard = async (index) => {
     if (expandedCard === null) {
       setExpandedCard(index);
       setIsExpanding(true);
+      await fetchData(websiteSections[index].endpoint);
     } else {
       setIsExpanding(false);
     }
   };
 
-  // Effect to handle the closing animation
+  const fetchData = async (endpoint) => {
+    try {
+      const response = await fetch(endpoint);
+      const data = await response.json();
+      setCurrentData(data);
+    } catch (error) {
+      console.error('Failed to fetch data:', error);
+    }
+  };
+
+  const updateData = async () => {
+    try {
+      const response = await fetch(websiteSections[expandedCard].endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(currentData),
+      });
+      if (response.ok) {
+        alert('Data updated successfully!');
+      } else {
+        throw new Error('Failed to update data');
+      }
+    } catch (error) {
+      console.error('Error updating data:', error);
+      alert('Failed to update data. Please try again.');
+    }
+  };
+
   useEffect(() => {
     if (!isExpanding && expandedCard !== null) {
-      const timer = setTimeout(() => setExpandedCard(null), 300); // 300ms matches the CSS transition time
+      const timer = setTimeout(() => setExpandedCard(null), 300);
       return () => clearTimeout(timer);
     }
   }, [isExpanding, expandedCard]);
 
+  const handleDataChange = (path, value) => {
+    setCurrentData(prevData => {
+      const newData = JSON.parse(JSON.stringify(prevData));
+      let current = newData;
+      for (let i = 0; i < path.length - 1; i++) {
+        current = current[path[i]];
+      }
+      current[path[path.length - 1]] = value;
+      return newData;
+    });
+  };
+
+  const handleAddNewItem = () => {
+    if (expandedCard === 2) { // Menu section
+      setCurrentData(prevData => ({
+        ...prevData,
+        Menu: [...prevData.Menu, newItem]
+      }));
+    } else if (expandedCard === 1) { // Hours section
+      setCurrentData(prevData => ({
+        ...prevData,
+        time: [...prevData.time, newItem]
+      }));
+    }
+    setNewItemDialogOpen(false);
+    setNewItem({});
+  };
+
+  const handleRemoveItem = (index) => {
+    setCurrentData(prevData => {
+      const newData = {...prevData};
+      if (expandedCard === 2) { // Menu section
+        newData.Menu.splice(index, 1);
+      } else if (expandedCard === 1) { // Hours section
+        newData.time.splice(index, 1);
+      }
+      return newData;
+    });
+  };
+
+  const renderDataFields = (data, path = []) => {
+    if (!data) return null;
+
+    if (Array.isArray(data)) {
+      return data.map((item, index) => (
+        <Grid item xs={12} key={index}>
+          <Paper elevation={3} className="p-4 mb-4">
+            <Typography variant="h6">Item {index + 1}</Typography>
+            {renderDataFields(item, [...path, index])}
+            <Button 
+              startIcon={<DeleteIcon />} 
+              color="secondary"
+              onClick={() => handleRemoveItem(index)}
+            >
+              Remove
+            </Button>
+          </Paper>
+        </Grid>
+      ));
+    }
+
+    if (typeof data === 'object' && data !== null) {
+      return Object.entries(data).map(([key, value]) => (
+        <Grid item xs={12} key={key}>
+          <Typography variant="subtitle1">{key}:</Typography>
+          {renderDataFields(value, [...path, key])}
+        </Grid>
+      ));
+    }
+
+    return (
+      <TextField
+        fullWidth
+        value={data}
+        onChange={(e) => handleDataChange([...path], e.target.value)}
+        variant="outlined"
+        multiline={typeof data === 'string' && data.length > 50}
+      />
+    );
+  };
+
+  const renderAddItemDialog = () => {
+    if (expandedCard === 2) { // Menu section
+      return (
+        <Dialog open={newItemDialogOpen} onClose={() => setNewItemDialogOpen(false)}>
+          <DialogTitle>Add New Menu Item</DialogTitle>
+          <DialogContent>
+            {Object.entries(menuItemTemplate).map(([key, value]) => (
+              <TextField
+                key={key}
+                margin="dense"
+                label={key}
+                fullWidth
+                value={newItem[key] || ''}
+                onChange={(e) => setNewItem({...newItem, [key]: e.target.value})}
+              />
+            ))}
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={() => setNewItemDialogOpen(false)}>Cancel</Button>
+            <Button onClick={handleAddNewItem} color="primary">Add</Button>
+          </DialogActions>
+        </Dialog>
+      );
+    } else if (expandedCard === 1) { // Hours section
+      return (
+        <Dialog open={newItemDialogOpen} onClose={() => setNewItemDialogOpen(false)}>
+          <DialogTitle>Add New Operating Hours</DialogTitle>
+          <DialogContent>
+            <Select
+              fullWidth
+              value={newItem.day || ''}
+              onChange={(e) => setNewItem({...newItem, day: e.target.value})}
+            >
+              {['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'].map(day => (
+                <MenuItem key={day} value={day}>{day}</MenuItem>
+              ))}
+            </Select>
+            <TextField
+              margin="dense"
+              label="Hours"
+              fullWidth
+              value={newItem.hours || ''}
+              onChange={(e) => setNewItem({...newItem, hours: e.target.value})}
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={() => setNewItemDialogOpen(false)}>Cancel</Button>
+            <Button onClick={handleAddNewItem} color="primary">Add</Button>
+          </DialogActions>
+        </Dialog>
+      );
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-100">
-      {/* Top AppBar */}
+      {/* AppBar and Drawer code remains the same */}
       <AppBar position="static">
         <Toolbar>
           <IconButton edge="start" color="inherit" onClick={toggleSidebar}>
@@ -80,45 +256,63 @@ export default function CMSPage() {
       {/* Main content area */}
       <main className="p-4">
         <Typography variant="h4" className="mb-4">Website Content</Typography>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <Grid container spacing={4}>
           {websiteSections.map((section, index) => (
-            <Card key={index} className="transition-all duration-300 ease-in-out cursor-pointer" onClick={() => toggleCard(index)}>
-              <CardContent>
-                <Typography variant="h6">{section.title}</Typography>
-                <Typography variant="body2" color="text.secondary">
-                  {section.description}
-                </Typography>
-              </CardContent>
-            </Card>
+            <Grid item xs={12} sm={6} md={4} key={index}>
+              <Card 
+                className="transition-all duration-300 ease-in-out cursor-pointer hover:shadow-lg" 
+                onClick={() => toggleCard(index)}
+              >
+                <CardContent>
+                  <Typography variant="h6">{section.title}</Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    {section.description}
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
           ))}
-        </div>
+        </Grid>
       </main>
 
       {/* Expanded card overlay */}
       {expandedCard !== null && (
-        <div className={`fixed inset-0 bg-black transition-opacity duration-300 ease-in-out ${isExpanding ? 'bg-opacity-50' : 'bg-opacity-0'} flex items-center justify-center z-50`}>
-          <div className={`bg-white rounded-lg w-full max-w-3xl m-4 p-6 relative transition-all duration-300 ease-in-out ${isExpanding ? 'scale-100 opacity-100' : 'scale-95 opacity-0'}`}>
+        <Dialog 
+          open={isExpanding} 
+          onClose={() => setIsExpanding(false)}
+          fullWidth
+          maxWidth="md"
+        >
+          <DialogTitle>
+            {websiteSections[expandedCard].title}
             <IconButton 
-              className="absolute top-2 right-2" 
               onClick={() => setIsExpanding(false)}
+              style={{ position: 'absolute', right: 8, top: 8 }}
             >
               <CloseIcon />
             </IconButton>
-            <Typography variant="h4" className="mb-4">
-              {websiteSections[expandedCard].title}
-            </Typography>
-            <Typography variant="body1" className="mb-4">
-              {websiteSections[expandedCard].description}
-            </Typography>
-            <Box className="bg-gray-100 p-4 rounded">
-              <Typography variant="body2">
-                This is where you can add form fields, JSON editors, or any other
-                content management tools for the {websiteSections[expandedCard].title} section.
-              </Typography>
-            </Box>
-          </div>
-        </div>
+          </DialogTitle>
+          <DialogContent dividers>
+            <Grid container spacing={3}>
+              {renderDataFields(currentData)}
+            </Grid>
+          </DialogContent>
+          <DialogActions>
+            {websiteSections[expandedCard].canAdd && (
+              <Button onClick={() => setNewItemDialogOpen(true)} startIcon={<AddIcon />}>
+                Add New Item
+              </Button>
+            )}
+            <Button onClick={updateData} variant="contained" color="primary">
+              Save Changes
+            </Button>
+          </DialogActions>
+        </Dialog>
       )}
+
+      {renderAddItemDialog()}
     </div>
   );
 }
+
+

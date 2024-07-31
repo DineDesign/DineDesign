@@ -1,10 +1,9 @@
-import React from 'react'
-import { Box, Typography, Rating, Avatar, Paper, Stack } from '@mui/material'
-import { styled } from '@mui/material/styles'
+import React, { useState } from 'react';
+import { Box, Typography, Rating, Avatar, Paper, Stack, Button } from '@mui/material';
+import { styled } from '@mui/material/styles';
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
     padding: theme.spacing(3),
-    height: '100%',
     display: 'flex',
     flexDirection: 'column',
     borderRadius: theme.shape.borderRadius,
@@ -13,15 +12,21 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
     '&:hover': {
         boxShadow: '0 5px 15px 2px rgba(0, 0, 0, .08)',
     },
-}))
+}));
 
 const AvatarStyled = styled(Avatar)(({ theme }) => ({
     width: theme.spacing(7),
     height: theme.spacing(7),
     marginRight: theme.spacing(2),
-}))
+}));
 
 export default function ReviewComponent({ name, rating, comment, avatar, time }) {
+    const [expanded, setExpanded] = useState(false);
+
+    const handleToggleExpand = () => {
+        setExpanded(!expanded);
+    };
+
     return (
         <StyledPaper elevation={1}>
             <Stack direction="row" spacing={2} alignItems="flex-start">
@@ -35,16 +40,19 @@ export default function ReviewComponent({ name, rating, comment, avatar, time })
                         </Typography>
                     </Stack>
                     <Typography variant="body1" color="text.secondary" sx={{
-                        overflow: 'hidden',
+                        overflow: expanded ? 'visible' : 'hidden',
                         textOverflow: 'ellipsis',
                         display: '-webkit-box',
-                        WebkitLineClamp: 3,
+                        WebkitLineClamp: expanded ? 'none' : 3,
                         WebkitBoxOrient: 'vertical'
                     }}>
                         {comment}
                     </Typography>
+                    <Button size="small" onClick={handleToggleExpand}>
+                        {expanded ? 'Show Less' : 'See More'}
+                    </Button>
                 </Box>
             </Stack>
         </StyledPaper>
-    )
+    );
 }

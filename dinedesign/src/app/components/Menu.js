@@ -16,7 +16,7 @@ export default function Menu() {
   const initialRowsToShow = 5;
   const initialItemsToShow = initialRowsToShow * itemsPerRow;
 
-  const activeItems = menuData[activeCategory];
+  const activeItems = menuData.MenuItems[activeCategory];
   const visibleItems = showAll ? activeItems : activeItems.slice(0, initialItemsToShow);
 
   useEffect(() => {
@@ -63,7 +63,7 @@ export default function Menu() {
             scrollbarWidth: 'none',
           }}
         >
-          {Object.keys(menuData).map((category) => (
+          {Object.keys(menuData.MenuItems).map((category) => (
             <Button
               key={category}
               onClick={() => setActiveCategory(category)}
