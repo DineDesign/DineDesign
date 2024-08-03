@@ -13,22 +13,22 @@
     {
       "icon": "Email",
       "title": "Reservation",
-      "content": "daveinder2007@gmail.com"
+      "content": "dinedesignGTA@gmail.com"
     }
   ],
   "storySection": {
     "imageSrc": "Restaurant.jpg",
     "imageAlt": "Restaurant",
     "title": "The Story",
-    "mainParagraph": "This is a paragraph of text that will be displayed next to the image. When the screen size is smaller than the `md` breakpoint, the image and text will stack vertically.",
+    "mainParagraph": "When you are looking for the best Indian cuisine in Thornhill, the search usually includes The Indian Cuisine restaurant. You will feel welcomed into our casual, intimate space on Steeles Avenue West by our friendly staff from the second you enter the door until the moment you say goodbye.",
     "yearInfo": [
       {
         "year": "1996",
-        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut ab minima error, accusantium odit sint!"
+        "description": "The Indian Cuisine restaurant was founded, bringing authentic and traditional flavors from India to the heart of Thornhill. The early days were marked by the warm reception from the community and the relentless pursuit of culinary excellence."
       },
       {
         "year": "2005",
-        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut ab minima error, accusantium odit sint!"
+        "description": "After nearly a decade of serving the community, The Indian Cuisine expanded its menu to include a variety of vegetarian and vegan options, catering to the evolving tastes and preferences of our valued customers."
       }
     ],
     "signature": "Dine Design"

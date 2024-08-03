@@ -1,0 +1,31 @@
+{
+  "kind": "singleType",
+  "collectionName": "menus",
+  "info": {
+    "singularName": "menu",
+    "pluralName": "menus",
+    "displayName": "Menu",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Description": {
+      "type": "text"
+    },
+    "MenuItems": {
+      "type": "json"
+    },
+    "dog": {
+      "displayName": "MenuItems",
+      "type": "component",
+      "repeatable": true,
+      "component": "breads.menu-items"
+    }
+  }
+}

@@ -1,3 +1,12 @@
+'use client';
+import React from "react";
+import { Link as ScrollLink } from 'react-scroll';
+import GoogleMapOverlay from "./Maps";
+import Link from 'next/link';
+import hours from '../Data/hours.json'
+
+// (Rest of your StickyNavbar component code...)
+
 export default function Footer() {
     return (
       <footer className="bg-gray-100 font-sans text-gray-800 dark:bg-gray-900 dark:text-white">
@@ -11,11 +20,11 @@ export default function Footer() {
             <div>
               <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
               <ul className="space-y-2">
-                {['Menu', 'Who We Are', 'Events', 'Contact'].map((item) => (
+                {['Offers', 'Menu', 'Contact', 'Reviews'].map((item) => (
                   <li key={item}>
-                    <a href="#" className="hover:text-blue-500 transition-colors duration-300">
+                    <ScrollLink to={item.toLowerCase()} smooth={true} duration={500} className="hover:text-blue-500 transition-colors duration-300 cursor-pointer">
                       {item}
-                    </a>
+                    </ScrollLink>
                   </li>
                 ))}
               </ul>
